@@ -24,3 +24,26 @@ test('button turns blue when clicked', () => {
   //expect the button text to be change to red.
   expect(colorButton.textContent).toBe('Change to red');
 });
+
+test('initial conditions', () => {
+  render(<App />);
+  const colorButton = screen.getByRole('button', { id: 'colorBtn' });
+  //check that the button starts out enabled
+  expect(colorButton).toBeEnabled();
+
+  // check that the checkbox starts out unchecked
+  const checkbox = screen.getByRole('checkbox');
+  expect(checkbox).not.toBeChecked();
+});
+
+test('checkbox disabled button on first and enables on second click', () => {
+  render(<App />);
+
+  const colorButton = screen.getByRole('button', { id: 'colorBtn' });
+  const checkbox = screen.getByRole('checkbox');
+
+  fireEvent.click(checkbox);
+  expect(colorButton).toBeDisabled();
+  fireEvent.click(checkbox);
+  expect(colorButton).toBeEnabled();
+});
