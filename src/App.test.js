@@ -23,7 +23,7 @@ test('button turns blue when clicked', () => {
   //clickButton
   fireEvent.click(colorButton);
   //expect the button text to be change to red.
-  expect(colorButton.textContent).toBe('Change to red');
+  expect(colorButton).toHaveTextContent('Change to red');
 });
 
 test('initial conditions', () => {
